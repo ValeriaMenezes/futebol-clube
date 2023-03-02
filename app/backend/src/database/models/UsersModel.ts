@@ -41,3 +41,5 @@ Users.init(
     timestamps: false,
   },
 );
+
+export default Users;

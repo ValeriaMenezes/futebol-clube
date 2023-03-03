@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { IMatchesService } from '../interfaces/serviceInterfaces/IMatchesSevice';
 
+// https://pt.stackoverflow.com/questions/235272/como-converter-uma-string-em-booleano
+
 export default class MatchesController {
   private readonly _service: IMatchesService;
 
@@ -8,8 +10,15 @@ export default class MatchesController {
     this._service = service;
   }
 
-  async getAll(_req: Request, res: Response) {
-    const allMatches = await this._service.getMatches();
+  async getAll(req: Request, res: Response) {
+    const { inProgress } = req.query;
+    let allMatches;
+    if (!inProgress) {
+      allMatches = await this._service.getMatches();
+    } else {
+      const parseBool = Boolean(inProgress === 'true');
+      allMatches = await this._service.getMatchesInProgress(parseBool);
+    }
     return res.status(200).json(allMatches);
   }
 }

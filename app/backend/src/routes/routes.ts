@@ -8,6 +8,7 @@ import validatePassword from '../middlewares/validatePassword';
 import authenticateToken from '../middlewares/authenticateToken';
 import MatchesService from '../services/MatchesServices';
 import MatchesController from '../controllers/MatchesController';
+import { validateTeamName, validateTeam } from '../middlewares/validateTeams';
 
 const routes = Router();
 const teamsService = new TeamsService();
@@ -50,6 +51,8 @@ routes.patch(
 routes.post(
   '/matches',
   authenticateToken,
+  validateTeamName,
+  validateTeam,
   (req: Request, res: Response) => matchesController.newMatche(req, res),
 );
 

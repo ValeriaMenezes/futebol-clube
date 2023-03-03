@@ -1,4 +1,3 @@
-// import { JwtPayload } from 'jsonwebtoken';
 import { ILogin } from '../ILogin';
 import Users from '../../database/models/UsersModel';
 

@@ -35,5 +35,10 @@ routes.get('/teams', (req: Request, res: Response) => teamsController.getAll(req
 routes.get('/teams/:id', (req: Request, res: Response) => teamsController.getById(req, res));
 
 routes.get('/matches', (req: Request, res: Response) => matchesController.getAll(req, res));
+routes.patch(
+  '/matches/:id/finish',
+  authenticateToken,
+  (req: Request, res: Response) => matchesController.matchesFinished(req, res),
+);
 
 export default routes;

@@ -36,4 +36,9 @@ export default class MatchesController {
     await this._service.matchesUpdated(Number(id), homeTeamGoals, awayTeamGoals);
     return res.status(200).json({ message: 'Updated' });
   }
+
+  async newMatche(req: Request, res: Response) {
+    const creteNewMatche = await this._service.newMatche(req.body);
+    return res.status(201).json(creteNewMatche);
+  }
 }

@@ -47,4 +47,10 @@ routes.patch(
   (req: Request, res: Response) => matchesController.matchesUpdated(req, res),
 );
 
+routes.post(
+  '/matches',
+  authenticateToken,
+  (req: Request, res: Response) => matchesController.newMatche(req, res),
+);
+
 export default routes;

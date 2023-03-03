@@ -41,4 +41,10 @@ routes.patch(
   (req: Request, res: Response) => matchesController.matchesFinished(req, res),
 );
 
+routes.patch(
+  '/matches/:id',
+  authenticateToken,
+  (req: Request, res: Response) => matchesController.matchesUpdated(req, res),
+);
+
 export default routes;

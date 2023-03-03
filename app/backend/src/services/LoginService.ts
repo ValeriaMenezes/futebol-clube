@@ -9,10 +9,10 @@ const { JWT_SECRET } = process.env;
 
 export default class LoginService implements ILoginService {
   async connectUser(user: ILogin): Promise<string | object> {
-    // console.log('user ---->', user);
+    console.log('user ---->', user);
 
     const validUser = await Users.findOne({ where: { email: user.email } });
-    // console.log('validUser', validUser?.dataValues);
+    console.log('validUser', validUser?.dataValues);
 
     if (!validUser) {
       throw new StatusErrors('Invalid email or password');

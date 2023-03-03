@@ -6,12 +6,16 @@ import LoginService from '../services/LoginService';
 import validateEmail from '../middlewares/validateEmail';
 import validatePassword from '../middlewares/validatePassword';
 import authenticateToken from '../middlewares/authenticateToken';
+import MatchesService from '../services/MatchesServices';
+import MatchesController from '../controllers/MatchesController';
 
 const routes = Router();
 const teamsService = new TeamsService();
 const teamsController = new TeamsController(teamsService);
 const loginService = new LoginService();
 const loginController = new LoginController(loginService);
+const matchesService = new MatchesService();
+const matchesController = new MatchesController(matchesService);
 
 routes.post(
   '/login',
@@ -29,5 +33,7 @@ routes.get(
 
 routes.get('/teams', (req: Request, res: Response) => teamsController.getAll(req, res));
 routes.get('/teams/:id', (req: Request, res: Response) => teamsController.getById(req, res));
+
+routes.get('/matches', (req: Request, res: Response) => matchesController.getAll(req, res));
 
 export default routes;

@@ -5,6 +5,7 @@ import LoginController from '../controllers/LoginController';
 import LoginService from '../services/LoginService';
 import validateEmail from '../middlewares/validateEmail';
 import validatePassword from '../middlewares/validatePassword';
+import authenticateToken from '../middlewares/authenticateToken';
 
 const routes = Router();
 const teamsService = new TeamsService();
@@ -19,6 +20,13 @@ routes.post(
   (req: Request, res: Response) => loginController
     .connectUser(req, res),
 );
+
+routes.get(
+  '/login/role',
+  authenticateToken,
+  (req: Request, res: Response) => loginController.getRole(req, res),
+);
+
 routes.get('/teams', (req: Request, res: Response) => teamsController.getAll(req, res));
 routes.get('/teams/:id', (req: Request, res: Response) => teamsController.getById(req, res));
 

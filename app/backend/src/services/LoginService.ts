@@ -9,8 +9,10 @@ const { JWT_SECRET } = process.env;
 
 export default class LoginService implements ILoginService {
   async connectUser(user: ILogin): Promise<string | object> {
+    // console.log('user ---->', user);
+
     const validUser = await Users.findOne({ where: { email: user.email } });
-    // console.log('validUser', validUser?.dataValues.password);
+    // console.log('validUser', validUser?.dataValues);
 
     if (!validUser) {
       throw new StatusErrors('Invalid email or password');
@@ -32,13 +34,25 @@ export default class LoginService implements ILoginService {
     // };
 
     const payload = {
-      // id: validUser.id,
+      // id: user.id,
       email: user.email,
       password: user.password,
-      // username: validUser.username,
     };
 
     const token = sign(payload, JWT_SECRET as string);
     return token;
+  };
+
+  getRoleByToken = async (userEmail: string, authorization: string): Promise<Users | object> => {
+    if (!authorization || authorization.length < 16) {
+      throw new StatusErrors('Token not found');
+    }
+
+    const user = await Users.findOne({ where: { email: userEmail } });
+    if (user) {
+      return { role: user.role };
+    }
+
+    return { role: '' };
   };
 }

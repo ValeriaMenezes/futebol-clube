@@ -15,6 +15,7 @@ export default class MatchesService implements IMatchesService {
         { model: Teams, as: 'awayTeam', attributes: ['teamName'] },
       ],
     });
+    console.log('allMatches', allMatches);
 
     return allMatches;
   }

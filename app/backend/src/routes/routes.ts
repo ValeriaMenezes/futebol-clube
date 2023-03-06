@@ -9,6 +9,8 @@ import authenticateToken from '../middlewares/authenticateToken';
 import MatchesService from '../services/MatchesServices';
 import MatchesController from '../controllers/MatchesController';
 import { validateTeamName, validateTeam } from '../middlewares/validateTeams';
+import LeaderBoardService from '../services/LeaderBoardService';
+import LeaderBoardController from '../controllers/LeaderBoardController';
 
 const routes = Router();
 const teamsService = new TeamsService();
@@ -17,6 +19,8 @@ const loginService = new LoginService();
 const loginController = new LoginController(loginService);
 const matchesService = new MatchesService();
 const matchesController = new MatchesController(matchesService);
+const leaderBoardService = new LeaderBoardService();
+const leaderBoardController = new LeaderBoardController(leaderBoardService);
 
 routes.post(
   '/login',
@@ -54,6 +58,11 @@ routes.post(
   validateTeamName,
   validateTeam,
   (req: Request, res: Response) => matchesController.newMatche(req, res),
+);
+
+routes.get(
+  '/leaderboard/home',
+  (req: Request, res: Response) => leaderBoardController.getAll(req, res),
 );
 
 export default routes;

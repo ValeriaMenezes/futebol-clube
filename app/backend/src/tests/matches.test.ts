@@ -20,7 +20,7 @@ describe('Testando login matches', function () {
   });
 
   it('Testando ao fazer uma requisição com sucesso', async function() {
-    sinon.stub(MatchesModel, 'findAll').resolves(allMatches as IMatches[]);
+    sinon.stub(MatchesModel, 'findAll').resolves(allMatches as unknown as IMatches[]);
 
     const chaiHttpResponse = await chai
     .request(app)

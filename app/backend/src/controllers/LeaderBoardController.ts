@@ -12,4 +12,9 @@ export default class LeaderBoardController {
     const result = await this._service.getAll();
     return res.status(200).json(result);
   }
+
+  async getAway(_req: Request, res: Response) {
+    const result = await this._service.getAway();
+    return res.status(200).json(result);
+  }
 }

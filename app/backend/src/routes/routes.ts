@@ -65,4 +65,9 @@ routes.get(
   (req: Request, res: Response) => leaderBoardController.getAll(req, res),
 );
 
+routes.get(
+  '/leaderboard/away',
+  (req: Request, res: Response) => leaderBoardController.getAway(req, res),
+);
+
 export default routes;

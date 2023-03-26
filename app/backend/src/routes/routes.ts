@@ -62,7 +62,7 @@ routes.post(
 
 routes.get(
   '/leaderboard/home',
-  (req: Request, res: Response) => leaderBoardController.getAll(req, res),
+  (req: Request, res: Response) => leaderBoardController.getHome(req, res),
 );
 
 routes.get(

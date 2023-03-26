@@ -1,4 +1,4 @@
 export default interface ILeaderBoardService {
-  getAll(): Promise<unknown[]>,
+  getHome(): Promise<unknown[]>,
   getAway(): Promise<unknown[]>,
 }

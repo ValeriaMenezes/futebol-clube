@@ -3,7 +3,7 @@ import Teams from '../database/models/TeamsModel';
 import { leaderBoard, sortLeaderBoard, leaderBoardAway } from '../utils/LeaderBoard';
 
 export default class LeaderBoardService {
-  getAll = async () => {
+  getHome = async () => {
     const allTeams = await Teams.findAll();
     const infoMatches: any = await Matches.findAll(
       { where: { inProgress: false },

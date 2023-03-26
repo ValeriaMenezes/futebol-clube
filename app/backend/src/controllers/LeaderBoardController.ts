@@ -8,8 +8,8 @@ export default class LeaderBoardController {
     this._service = service;
   }
 
-  async getAll(_req: Request, res: Response) {
-    const result = await this._service.getAll();
+  async getHome(_req: Request, res: Response) {
+    const result = await this._service.getHome();
     return res.status(200).json(result);
   }
 
